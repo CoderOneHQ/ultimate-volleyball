@@ -11,7 +11,7 @@
 ## Leaderboard
 | Rank | Name | Games Played | Winrate |
 | --- | --- | --- | --- |
-| 1 🥇 | Test | 1 | 100%
+| 1 🥇 | - | 1 | 100%
 
 ## Contents
 1. [Getting Started](#getting-started)

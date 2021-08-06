@@ -108,14 +108,11 @@ public class VolleyballEnvController : MonoBehaviour
             if (lastHitter == Team.Blue)
             {
                 // penalize blue agent
-                purpleAgent.SetReward(0.5f);
                 blueAgent.SetReward(-0.5f);
-                Debug.Log("Out of bounds by " + Team.Blue);
             }
             else if (lastHitter == Team.Purple)
             {
                 // penalize purple agent
-                blueAgent.SetReward(0.5f);
                 purpleAgent.SetReward(-0.5f);
             }
         }

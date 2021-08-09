@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.MLAgents;
-using Unity.MLAgents.Sensors;
-using Unity.MLAgents.Actuators;
 
 public enum Team
 {
@@ -33,12 +30,10 @@ public class VolleyballEnvController : MonoBehaviour
     public VolleyballAgent blueAgent;
     public VolleyballAgent purpleAgent;
 
+    public List<VolleyballAgent> AgentsList = new List<VolleyballAgent>();  
+
     Rigidbody blueAgentRb;
     Rigidbody purpleAgentRb;
-    Vector3 blueStartingPos;
-    Quaternion blueStartingRot;
-    Vector3 purpleStartingPos;
-    Quaternion purpleStartingRot;
 
     public GameObject ball;
     Rigidbody ballRb;
@@ -57,15 +52,10 @@ public class VolleyballEnvController : MonoBehaviour
 
     void Start()
     {
+
         // Used to control agent & ball starting positions
         blueAgentRb = blueAgent.GetComponent<Rigidbody>();
         purpleAgentRb = purpleAgent.GetComponent<Rigidbody>();
-       
-        blueStartingPos = blueAgent.transform.position;
-        blueStartingRot = blueAgent.transform.rotation;
-
-        purpleStartingPos = purpleAgent.transform.position;
-        purpleStartingRot = purpleAgent.transform.rotation;
 
         ballRb = ball.GetComponent<Rigidbody>();
 
@@ -102,19 +92,6 @@ public class VolleyballEnvController : MonoBehaviour
             blueAgent.AddReward(1f);
             purpleAgent.AddReward(-1f);
             StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.blueGoalMaterial, blueGoalRenderer, .5f));
-        }
-        else if (goalEvent == GoalEvent.HitOutOfBounds)
-        {
-            if (lastHitter == Team.Blue)
-            {
-                // penalize blue agent
-                blueAgent.SetReward(-0.5f);
-            }
-            else if (lastHitter == Team.Purple)
-            {
-                // penalize purple agent
-                purpleAgent.SetReward(-0.5f);
-            }
         }
 
         blueAgent.EndEpisode();
@@ -182,27 +159,19 @@ public class VolleyballEnvController : MonoBehaviour
     {
         resetTimer = 0;
 
-        // randomise blue spawn
-        var blueRandomPosX = Random.Range(-2f, 2f);
-        var blueRandomPosZ = Random.Range(4, 10f);
-        var blueRandomPosY = Random.Range(1f, 3.75f); // depends on jump height
-        var blueRandomRot = Random.Range(135f, 225f);
+        foreach (var agent in AgentsList)
+        {
+            // randomise starting positions and rotations
+            var randomPosX = Random.Range(-2f, 2f);
+            var randomPosZ = Random.Range(-2f, 2f);
+            var randomPosY = Random.Range(0.5f, 3.75f); // depends on jump height
+            var randomRot = Random.Range(-45f, 45f);
 
-        blueAgent.transform.localPosition = new Vector3(blueRandomPosX, blueRandomPosY, blueRandomPosZ);
-        // blueAgent.transform.localPosition = new Vector3(0, 1.5f, 8);
-        blueAgent.transform.eulerAngles = new Vector3(0, blueRandomRot, 0);
-        blueAgentRb.velocity = default(Vector3);
-
-        // randomise purple spawn
-        var purpleRandomPosX = Random.Range(-2f, 2f);
-        var purpleRandomPosZ = Random.Range(4, 10f);
-        var purpleRandomPosY = Random.Range(1f, 3.75f); // depends on jump height
-        var purpleRandomRot = Random.Range(-45f, 45f);
-
-        purpleAgent.transform.localPosition = new Vector3(purpleRandomPosX, purpleRandomPosY, -1*purpleRandomPosZ);
-        // blueAgent.transform.localPosition = new Vector3(0, 1.5f, 8);
-        purpleAgent.transform.eulerAngles = new Vector3(0, -1*purpleRandomRot, 0);
-        purpleAgentRb.velocity = default(Vector3);
+            agent.transform.localPosition = new Vector3(randomPosX, randomPosY, randomPosZ);
+            agent.transform.eulerAngles = new Vector3(0, randomRot, 0);
+            
+            agent.GetComponent<Rigidbody>().velocity = default(Vector3);
+        }
 
         // reset ball to starting conditions
         ResetBall();

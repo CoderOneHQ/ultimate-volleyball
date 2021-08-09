@@ -2,7 +2,7 @@
 [![Submissions Open](https://img.shields.io/badge/submissions-open-blue)](https://bit.ly/ult-volleyball)
 [![Suggestions Welcome](https://img.shields.io/badge/suggestions-welcome-success)](https://github.com/CoderOneHQ/ultimate-volleyball/issues)
 
-![Ultimate Volleyball](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/610b97749b9ae970392eccf5_volleyball_2p.gif)
+![Ultimate Volleyball](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/611114ac2b847eb06580c630_ultimate-volleyball.PNG)
 
 ## About
 **Ultimate Volleyball** is a 3D volleyball environment built on [Unity ML-Agents](https://unity.com/products/machine-learning-agents). You're welcome to submit a trained agent to play against others (see [Submission Guidelines](#submission-guidelines)).
@@ -68,7 +68,7 @@ Total size: 8
 
 ## Submission Guidelines
 - You can change the reward functions, training configuration, and environment.
-- You should **not** change the observation input or action space.
+- Leave the observation input or action space unchanged.
 - Submit your model's `.onnx` file (e.g. `Volleyball.onnx`) located in `results` → `<run-id>`.
 
 [LINK TO SUBMISSION FORM](https://bit.ly/ult-volleyball)
@@ -76,5 +76,5 @@ Total size: 8
 > ⚠️ Only models created using ML-Agent's trainers will work ([more information](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Unity-Inference-Engine.md)).
 
 ## Questions and feedback
-- Join the [Discord](https://discord.gg/NkfgvRN) for any questions and discussions.
+- Join our [Discord](https://discord.gg/NkfgvRN) for any questions and discussions.
 - [PRs and suggestions welcome](https://github.com/CoderOneHQ/ultimate-volleyball/issues).

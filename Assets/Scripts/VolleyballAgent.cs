@@ -22,6 +22,7 @@ public class VolleyballAgent : Agent
     float jumpingTime;
     Vector3 jumpTargetPos;
     Vector3 jumpStartingPos;
+    float agentRot;
 
     public Collider[] hitGroundColliders = new Collider[3];
     EnvironmentParameters resetParams;
@@ -36,14 +37,7 @@ public class VolleyballAgent : Agent
         volleyballSettings = FindObjectOfType<VolleyballSettings>();
         behaviorParameters = gameObject.GetComponent<BehaviorParameters>();
 
-        if (behaviorParameters.TeamId == 0)
-        {
-            teamId = Team.Blue;
-        }
-        else
-        {
-            teamId = Team.Purple;
-        }
+        teamId = (Team)behaviorParameters.TeamId;
 
         agentRb = GetComponent<Rigidbody>();
         ballRb = ball.GetComponent<Rigidbody>();
@@ -117,7 +111,6 @@ public class VolleyballAgent : Agent
     {
         jumpingTime = 0.2f;
         jumpStartingPos = agentRb.position;
-        // Debug.Log("Jump");
     }
 
     /// <summary>
@@ -132,6 +125,15 @@ public class VolleyballAgent : Agent
         var rotateDirAction = act[1];
         var dirToGoSideAction = act[2];
         var jumpAction = act[3];
+
+        if (teamId == Team.Blue)
+        {
+            agentRot = -1;
+        }
+        else
+        {
+            agentRot = 1;
+        }
 
         if (dirToGoForwardAction == 1)
             dirToGo = (grounded ? 1f : 0.5f) * transform.forward * 1f;
@@ -155,7 +157,7 @@ public class VolleyballAgent : Agent
             }
 
         transform.Rotate(rotateDir, Time.fixedDeltaTime * 200f);
-        agentRb.AddForce(dirToGo * volleyballSettings.agentRunSpeed,
+        agentRb.AddForce(agentRot * dirToGo * volleyballSettings.agentRunSpeed,
             ForceMode.VelocityChange);
 
         if (jumpingTime > 0f)
@@ -188,18 +190,19 @@ public class VolleyballAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        // Agent positions (3)
-        sensor.AddObservation(this.transform.localPosition / 15f);
-
-        // Agent rotation (1)
+        // Agent rotation (1 float)
         sensor.AddObservation(this.transform.rotation.y);
 
-        // Agent velocity (2)
-        sensor.AddObservation(agentRb.velocity.x / 10f);
-        sensor.AddObservation(agentRb.velocity.z / 10f);
+        // Vector from agent to ball (direction to ball) (3 floats)
+        Vector3 toBall = ballRb.transform.position - this.transform.position;
+        sensor.AddObservation(toBall.normalized);
 
-        // Ball position (3)
-        sensor.AddObservation(ballRb.transform.localPosition / 16f);
+        // Distance from the ball (1 float)
+        sensor.AddObservation(toBall.magnitude);
+
+        // Agent velocity (3 floats)
+        sensor.AddObservation(agentRb.velocity);
+        
     }
 
     // For human controller

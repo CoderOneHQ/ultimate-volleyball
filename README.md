@@ -77,6 +77,7 @@ Total size: 8
 >
 > [LINK TO SIGNUP FORM](https://bit.ly/ulti-volleyball)
 
+- Please ensure you're using the latest release of Unity ML-Agents ([Release 18](https://github.com/Unity-Technologies/ml-agents#releases--documentation))
 - You can change the reward functions, training configuration, and environment.
 - Leave the observation input or action space unchanged.
 - Submit your model's `.onnx` file (e.g. `Volleyball.onnx`) located in `results` → `<run-id>`.

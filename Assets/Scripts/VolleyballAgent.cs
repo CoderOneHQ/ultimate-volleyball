@@ -37,10 +37,9 @@ public class VolleyballAgent : Agent
         volleyballSettings = FindObjectOfType<VolleyballSettings>();
         behaviorParameters = gameObject.GetComponent<BehaviorParameters>();
 
-        teamId = (Team)behaviorParameters.TeamId;
-
         agentRb = GetComponent<Rigidbody>();
         ballRb = ball.GetComponent<Rigidbody>();
+
         resetParams = Academy.Instance.EnvironmentParameters;
     }
 
@@ -82,8 +81,7 @@ public class VolleyballAgent : Agent
             if (col != null && col.transform != transform &&
                 (col.CompareTag("walkableSurface") ||
                  col.CompareTag("purpleGoal") ||
-                 col.CompareTag("blueGoal") ||
-                 col.CompareTag("wall")))
+                 col.CompareTag("blueGoal")))
             {
                 grounded = true; //then we're grounded
                 break;
@@ -126,6 +124,7 @@ public class VolleyballAgent : Agent
         var dirToGoSideAction = act[2];
         var jumpAction = act[3];
 
+        // for symmetry between player side
         if (teamId == Team.Blue)
         {
             agentRot = -1;
@@ -165,7 +164,7 @@ public class VolleyballAgent : Agent
             jumpTargetPos =
                 new Vector3(agentRb.position.x,
                     jumpStartingPos.y + volleyballSettings.agentJumpHeight,
-                    agentRb.position.z) + dirToGo;
+                    agentRb.position.z) + agentRot*dirToGo;
 
             MoveTowards(jumpTargetPos, agentRb, volleyballSettings.agentJumpVelocity,
                 volleyballSettings.agentJumpVelocityMaxChange);
@@ -194,7 +193,10 @@ public class VolleyballAgent : Agent
         sensor.AddObservation(this.transform.rotation.y);
 
         // Vector from agent to ball (direction to ball) (3 floats)
-        Vector3 toBall = ballRb.transform.position - this.transform.position;
+        Vector3 toBall = new Vector3((ballRb.transform.position.x - this.transform.position.x)*agentRot, 
+        (ballRb.transform.position.y - this.transform.position.y),
+        (ballRb.transform.position.z - this.transform.position.z)*agentRot);
+
         sensor.AddObservation(toBall.normalized);
 
         // Distance from the ball (1 float)
@@ -202,7 +204,21 @@ public class VolleyballAgent : Agent
 
         // Agent velocity (3 floats)
         sensor.AddObservation(agentRb.velocity);
-        
+
+        // Ball velocity (3 floats)
+        sensor.AddObservation(ballRb.velocity.y);
+        sensor.AddObservation(ballRb.velocity.z*agentRot);
+        sensor.AddObservation(ballRb.velocity.x*agentRot);
+
+        // Debug.Log(teamId + 
+        // " \n ballPosition: " + ballRb.transform.localPosition +
+        // " \n myPosition: " + this.transform.position +
+        // " \n VectorToBall: " + toBall +
+        // " \n VectorToBallNormalized: " + toBall.normalized +
+        // " \n DistanceToBall: " + toBall.magnitude +        
+        // " \n MyVelocity: " + agentRb.velocity +        
+        // " \n BallVelocity: " + ballRb.velocity       
+        // );
     }
 
     // For human controller

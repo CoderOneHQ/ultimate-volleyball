@@ -26,10 +26,20 @@ public class VolleyballController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.CompareTag("boundary"))
+        // if (other.gameObject.CompareTag("boundary"))
+        // {
+        //     // ball went out of bounds
+        //     envController.ResolveGoalEvent(GoalEvent.HitOutOfBounds);
+        // }
+        if (other.gameObject.CompareTag("blueBoundary"))
         {
-            // ball went out of bounds
-            envController.ResolveGoalEvent(GoalEvent.HitOutOfBounds);
+            // ball hit into blue side
+            envController.AssignRewards(0);
+        }
+        else if (other.gameObject.CompareTag("purpleBoundary"))
+        {
+            // ball hit into purple side
+            envController.AssignRewards(1);
         }
         else if (other.gameObject.CompareTag("purpleGoal"))
         {

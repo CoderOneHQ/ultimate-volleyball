@@ -115,11 +115,11 @@ If training a competitive agent, consider using a simple reward like:
 ## Future improvements
 Feel free to raise a PR or issue for any suggestions.
 
-- [] Add raycast option to observations
-- [] Add opponent position to vector observations
-- [] Improve net and ball physics
-- [] Add out of bounds area
-- [] Add executable for training
+- Add raycast option to observations
+- Add opponent position to vector observations
+- Improve net and ball physics
+- Add out of bounds area
+- Add executable for training
 
 ## Questions and feedback
 - Join our [Discord](https://discord.gg/NkfgvRN) for any questions and discussions.

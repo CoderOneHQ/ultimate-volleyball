@@ -5,7 +5,8 @@ using UnityEngine;
 public enum Team
 {
     Blue = 0,
-    Purple = 1
+    Purple = 1,
+    Default = 2
 }
 
 public enum GoalEvent
@@ -17,13 +18,8 @@ public enum GoalEvent
 
 public class VolleyballEnvController : MonoBehaviour
 {
-    // Control ball spawn behavior
-    enum BallSpawnSide
-    {
-        BlueSide = 0,
-        PurpleSide = 1,
-    }
     Vector3 ballStartingPos;
+    int ballSpawnSide;
 
     VolleyballSettings volleyballSettings;
 
@@ -56,8 +52,12 @@ public class VolleyballEnvController : MonoBehaviour
         // Used to control agent & ball starting positions
         blueAgentRb = blueAgent.GetComponent<Rigidbody>();
         purpleAgentRb = purpleAgent.GetComponent<Rigidbody>();
-
         ballRb = ball.GetComponent<Rigidbody>();
+
+        // Starting ball spawn side
+        // -1 = spawn blue side, 1 = spawn purple side
+        var spawnSideList = new List<int>{ -1, 1};
+        ballSpawnSide = spawnSideList[Random.Range(0,2)];
 
         // Render ground to visualise which agent scored
         blueGoalRenderer = blueGoal.GetComponent<Renderer>();
@@ -83,14 +83,14 @@ public class VolleyballEnvController : MonoBehaviour
     {
         if (goalEvent == GoalEvent.HitPurpleGoal)
         {
-            purpleAgent.AddReward(1f);
-            blueAgent.AddReward(-1f);
+            // purpleAgent.AddReward(1f);
+            // blueAgent.AddReward(-1f);
             StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.purpleGoalMaterial, purpleGoalRenderer, .5f));
         }
         else if (goalEvent == GoalEvent.HitBlueGoal)
         {
-            blueAgent.AddReward(1f);
-            purpleAgent.AddReward(-1f);
+            // blueAgent.AddReward(1f);
+            // purpleAgent.AddReward(-1f);
             StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.blueGoalMaterial, blueGoalRenderer, .5f));
         }
 
@@ -100,27 +100,45 @@ public class VolleyballEnvController : MonoBehaviour
     }
 
     /// <summary>
+    /// Assigns rewards for hitting ball over the net
+    /// </summary>
+    public void AssignRewards(int teamSide)
+    {
+        if (teamSide == 0 && lastHitter == Team.Purple)
+        {
+            purpleAgent.AddReward(1);
+            // Debug.Log("+1 to purple");
+        }
+        else if (teamSide == 1 && lastHitter == Team.Blue)
+        {
+            blueAgent.AddReward(1);
+            // Debug.Log("+1 to blue");
+        }
+    }
+
+    /// <summary>
     /// Randomises whether blue/purple starts with the ball.
     /// </summary>
     void ResetBall()
     {
-        // 0 = spawn blue side, 1 = spawn purple side
-        var ballSpawnSide = Random.Range(0,2);
         var randomPosX = Random.Range(-2f, 2f);
         var randomPosZ = Random.Range(6f, 10f);
         var randomPosY = Random.Range (5f, 7f);
 
-        if (ballSpawnSide == 0)
+        // alternate ball spawn side
+        ballSpawnSide = -1*ballSpawnSide;
+
+        if (ballSpawnSide == -1)
         {
             ball.transform.localPosition = new Vector3(randomPosX, randomPosY, randomPosZ);
-            // ball.transform.localPosition = new Vector3(0, 7f, 8);
-            lastHitter = Team.Blue;
+            // ball.transform.localPosition = new Vector3(0, 7f, 10);
+            // lastHitter = Team.Blue;
         }
         else if (ballSpawnSide == 1)
         {
             ball.transform.localPosition = new Vector3(randomPosX, randomPosY, -1*randomPosZ);
-            // ball.transform.localPosition = new Vector3(0, 7f, -8);
-            lastHitter = Team.Purple;
+            // ball.transform.localPosition = new Vector3(0, 7f, 10);
+            // lastHitter = Team.Purple;
         }
 
         ballRb.angularVelocity = Vector3.zero;
@@ -152,12 +170,13 @@ public class VolleyballEnvController : MonoBehaviour
             purpleAgent.EpisodeInterrupted();
             ResetScene();
         }
-
     }
 
     public void ResetScene()
     {
         resetTimer = 0;
+
+        lastHitter = Team.Default; // reset last hitter
 
         foreach (var agent in AgentsList)
         {
@@ -168,6 +187,7 @@ public class VolleyballEnvController : MonoBehaviour
             var randomRot = Random.Range(-45f, 45f);
 
             agent.transform.localPosition = new Vector3(randomPosX, randomPosY, randomPosZ);
+            // agent.transform.localPosition = new Vector3(0, 1.5f, 0);
             agent.transform.eulerAngles = new Vector3(0, randomRot, 0);
             
             agent.GetComponent<Rigidbody>().velocity = default(Vector3);

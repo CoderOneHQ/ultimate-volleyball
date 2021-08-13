@@ -10,7 +10,7 @@ assignees: joooyzee
 ## Submission name:
 
 ## Link to submission:
-(Please provide a link to a Repo containing to the `.onnx` model for your submission. Alternatively, submit your [model file directly here](https://bit.ly/ult-volleyball).)
+(Please provide a link to a Repo containing to the `.onnx` model for your submission.
 
 ## Other details:
 (Anything else about the implementation / training you'd like to share)

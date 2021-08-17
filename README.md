@@ -10,7 +10,6 @@
 ## Contents
 1. [Release notes](#release-notes)
 1. [Leaderboard](#leaderboard)
-1. [Recent games](#recent-games)
 1. [Getting started](#getting-started)
 1. [Heuristic mode](#heuristic-mode)
 1. [Training](#training)
@@ -29,18 +28,10 @@
 
 ## Leaderboard
 Please see the [submission guidelines](#submission-guidelines).
-| Rank | Name | Winrate | Details |
-| --- | --- | --- | --- |
-| 1 🥇 | Volleybot | 84.9% | PPO, 20M steps |
-| 2 | Ballboy | 67.2% | PPO, 5M steps |
-| 3 | Random Agent | 6.37% | It's pretty random | 
-
-## Recent Games
-| Purple | Blue | Clip |
-| --- | --- | --- |
-| Ballboy | Volleybot | ![Ballboy vs Volleybot (Blue)](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/611606ab086c3e61eb8b9b3a_vb_26_5M_v_26_20M.gif) |
-| Random Agent | Volleybot | ![Random Agent vs Volleybot](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/6116072f73d123ce5b020195_vb_20_26M_v_26_20M.gif) |
-
+| Rank | Name | Winrate | Details | Clip |
+| --- | --- | --- | --- | --- | 
+| 1 🥇 | Volleybot | 84.9% | PPO, 20M steps | ![Volleybot vs Ballbot](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/611606ab086c3e61eb8b9b3a_vb_26_5M_v_26_20M.gif) *Playing as: Blue* 🟦
+| 2 | Random Agent | 6.37% | It's pretty random | ![Random Agent vs Volleybot](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/6116072f73d123ce5b020195_vb_20_26M_v_26_20M.gif) *Playing as: Purple* 🟪
 
 ## Getting Started
 1. Install the [Unity ML-Agents toolkit](https:github.com/Unity-Technologies/ml-agents) (Release 18+) by following the [installation instructions](https://github.com/Unity-Technologies/ml-agents/blob/release_18_docs/docs/Installation.md).
@@ -122,7 +113,7 @@ Feel free to raise a PR or issue for any suggestions.
 - Add executable for training
 
 ## Questions and feedback
-- Join our [Discord](https://discord.gg/NkfgvRN) for any questions and discussions.
+- Join our [Discord](https://discord.gg/2Z695VGwyf) for any questions and discussions.
 - [PRs and suggestions welcome](https://github.com/CoderOneHQ/ultimate-volleyball/issues).
 
 ## Looking for more?

@@ -13,7 +13,6 @@
 /[Uu]serSettings/
 /[Rr]ecordings/
 /[Rr]esults/
-/[Aa]ssets/[Pp]refabs/OldPrefabs
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta

@@ -98,7 +98,6 @@ public class VolleyballAgent : Agent
         if (c.gameObject.CompareTag("ball"))
         {
             envController.UpdateLastHitter(teamId);
-            // AddReward(0.001f);
         }
     }
 
@@ -209,16 +208,6 @@ public class VolleyballAgent : Agent
         sensor.AddObservation(ballRb.velocity.y);
         sensor.AddObservation(ballRb.velocity.z*agentRot);
         sensor.AddObservation(ballRb.velocity.x*agentRot);
-
-        // Debug.Log(teamId + 
-        // " \n ballPosition: " + ballRb.transform.localPosition +
-        // " \n myPosition: " + this.transform.position +
-        // " \n VectorToBall: " + toBall +
-        // " \n VectorToBallNormalized: " + toBall.normalized +
-        // " \n DistanceToBall: " + toBall.magnitude +        
-        // " \n MyVelocity: " + agentRb.velocity +        
-        // " \n BallVelocity: " + ballRb.velocity       
-        // );
     }
 
     // For human controller

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class VolleyballController : MonoBehaviour
@@ -26,12 +24,12 @@ public class VolleyballController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
 
-        // if (other.gameObject.CompareTag("boundary"))
-        // {
-        //     // ball went out of bounds
-        //     envController.ResolveGoalEvent(GoalEvent.HitOutOfBounds);
-        // }
-        if (other.gameObject.CompareTag("blueBoundary"))
+        if (other.gameObject.CompareTag("boundary"))
+        {
+            // ball went out of bounds
+            envController.ResolveGoalEvent(GoalEvent.HitOutOfBounds);
+        }
+        else if (other.gameObject.CompareTag("blueBoundary"))
         {
             // ball hit into blue side
             envController.AssignRewards(0);

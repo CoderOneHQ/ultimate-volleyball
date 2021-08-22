@@ -19,7 +19,6 @@ You're welcome to submit a trained model which we'll play against others and add
 1. [Questions and feedback](#questions-and-feedback)
 
 ## Leaderboard
-Please see the [submission guidelines](#submission-guidelines).
 | Rank | Name | Winrate | Details | Clip |
 | --- | --- | --- | --- | --- | 
 | 1 🥇 | Volleybot | 84.9% | PPO, 20M steps | ![Volleybot vs Ballbot](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/611606ab086c3e61eb8b9b3a_vb_26_5M_v_26_20M.gif) *Playing as: Blue* 🟦
@@ -80,11 +79,11 @@ If you've trained a Volleyball agent and would like to share it, please follow t
 - Create a PR and add your model's `.onnx` file to the `Assets/Models` folder.
 
 ## Roadmap
-- [] Add raycasts for observations
-- [] Executable for training
-- [] Multiple units per team
-- [] Docs
-- [] A competition
+- [ ] Add raycasts for observations
+- [ ] Executable for training
+- [ ] Multiple units per team
+- [ ] Docs
+- [ ] A competition
 
 ## Questions and feedback
 Please join our [Discord](https://discord.gg/2Z695VGwyf) for any questions, discussions, and feedback.

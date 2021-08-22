@@ -80,18 +80,36 @@ public class VolleyballEnvController : MonoBehaviour
     /// Resolves which agent should score
     /// </summary>
     public void ResolveGoalEvent(GoalEvent goalEvent)
-    {
-        if (goalEvent == GoalEvent.HitPurpleGoal)
+    {   
+
+        if (goalEvent == GoalEvent.HitOutOfBounds)
+        {
+            if (lastHitter == Team.Blue)
+            {
+                blueAgent.AddReward(-0.1f);
+                StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.purpleGoalMaterial, purpleGoalRenderer, .5f));
+                StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.purpleGoalMaterial, blueGoalRenderer, .5f));
+            }
+            else if (lastHitter == Team.Purple)
+            {
+                purpleAgent.AddReward(-0.1f);
+                StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.blueGoalMaterial, blueGoalRenderer, .5f));
+                StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.blueGoalMaterial, purpleGoalRenderer, .5f));
+            }
+        }
+        else if (goalEvent == GoalEvent.HitPurpleGoal)
         {
             // purpleAgent.AddReward(1f);
             // blueAgent.AddReward(-1f);
             StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.purpleGoalMaterial, purpleGoalRenderer, .5f));
+            StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.purpleGoalMaterial, blueGoalRenderer, .5f));
         }
         else if (goalEvent == GoalEvent.HitBlueGoal)
         {
             // blueAgent.AddReward(1f);
             // purpleAgent.AddReward(-1f);
             StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.blueGoalMaterial, blueGoalRenderer, .5f));
+            StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.blueGoalMaterial, purpleGoalRenderer, .5f));
         }
 
         blueAgent.EndEpisode();
@@ -123,7 +141,7 @@ public class VolleyballEnvController : MonoBehaviour
     {
         var randomPosX = Random.Range(-2f, 2f);
         var randomPosZ = Random.Range(6f, 10f);
-        var randomPosY = Random.Range (5f, 7f);
+        var randomPosY = Random.Range (6f, 8f);
 
         // alternate ball spawn side
         ballSpawnSide = -1*ballSpawnSide;
@@ -187,7 +205,7 @@ public class VolleyballEnvController : MonoBehaviour
             var randomRot = Random.Range(-45f, 45f);
 
             agent.transform.localPosition = new Vector3(randomPosX, randomPosY, randomPosZ);
-            // agent.transform.localPosition = new Vector3(0, 1.5f, 0);
+            // agent.transform.localPosition = new Vector3(0, 1.5f, 1);
             agent.transform.eulerAngles = new Vector3(0, randomRot, 0);
             
             agent.GetComponent<Rigidbody>().velocity = default(Vector3);

@@ -1,55 +1,36 @@
 # 🏐 Ultimate Volleyball
-[![Submissions Open](https://img.shields.io/badge/submissions-open-green)](https://github.com/CoderOneHQ/ultimate-volleyball/issues/new?assignees=joooyzee&labels=submission&template=agent-submission.md&title=%5BSUBMISSION%5D)
-[![Suggestions Welcome](https://img.shields.io/badge/suggestions-welcome-success)](https://github.com/CoderOneHQ/ultimate-volleyball/issues)
 
 ![Ultimate Volleyball](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/6115ddedda18aab700dfb75c_ultimate-volleyball-trained.gif)
 
 ## About
-**Ultimate Volleyball** is a 3D physics-based multi-agent environment built on [Unity ML-Agents](https://unity.com/products/machine-learning-agents). You're welcome to submit a trained agent to play against others (see [Submission Guidelines](#submission-guidelines)).
+**Ultimate Volleyball** is a multi-agent reinforcement learning environment built on [Unity ML-Agents](https://unity.com/products/machine-learning-agents).
+
+You're welcome to submit a trained model which we'll play against others and add to the [leaderboard](#leaderboard).
+
+> **Version**: up-to-date with ML-Agents Release 18
 
 ## Contents
-1. [Release notes](#release-notes)
 1. [Leaderboard](#leaderboard)
 1. [Getting started](#getting-started)
-1. [Heuristic mode](#heuristic-mode)
 1. [Training](#training)
 1. [Environment description](#environment-description)
-1. [Submission guidelines](#submission-guidelines)
-1. [Future improvements](#future-improvements)
+1. [Submissions](#submissions)
+1. [Roadmap](#roadmap)
 1. [Questions and feedback](#questions-and-feedback)
-1. [Coder One Beta](#looking-for-more)
-
-## Release Notes
-> ⚠️ Please note this is still a WIP project. The environment will be improved over time. Feel free to make a suggestion by raising an issue or PR.
-
-| ver. | Notes |
-| --- | --- |
-| 1.0 (current) | <p>Initial stable release. Submissions welcome!</p> <p>Tested on Windows only.</p> <p>**Note:** This version contains an invisible boundary (can be toggled off) to make it less punishing for learning agents. Opponent information is also not included in the vector observations (planned for next release). </p> |
 
 ## Leaderboard
 Please see the [submission guidelines](#submission-guidelines).
 | Rank | Name | Winrate | Details | Clip |
 | --- | --- | --- | --- | --- | 
 | 1 🥇 | Volleybot | 84.9% | PPO, 20M steps | ![Volleybot vs Ballbot](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/611606ab086c3e61eb8b9b3a_vb_26_5M_v_26_20M.gif) *Playing as: Blue* 🟦
-| 2 | Random Agent | 6.37% | It's pretty random | ![Random Agent vs Volleybot](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/6116072f73d123ce5b020195_vb_20_26M_v_26_20M.gif) *Playing as: Purple* 🟪
+| 2 | Random Agent | 6.37% | - | ![Random Agent vs Volleybot](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/6116072f73d123ce5b020195_vb_20_26M_v_26_20M.gif) *Playing as: Purple* 🟪
 
 ## Getting Started
 1. Install the [Unity ML-Agents toolkit](https:github.com/Unity-Technologies/ml-agents) (Release 18+) by following the [installation instructions](https://github.com/Unity-Technologies/ml-agents/blob/release_18_docs/docs/Installation.md).
 2. Download or clone this repo containing the `ultimate-volleyball` Unity project.
-3. Open the `ultimate-volleyball` project (Unity Hub → Projects → Add → Select root folder for this repo).
-4. Load the `Volleyball` scene (Project panel → Assets → Scenes → `VolleyballMain.unity`).
+3. Open the `ultimate-volleyball` project in Unity (Unity Hub → Projects → Add → Select root folder for this repo).
+4. Load the `VolleyballMain` scene (Project panel → Assets → Scenes → `VolleyballMain.unity`).
 5. Click the ▶ button at the top of the window. This will run the agent in inference mode using the provided baseline model.
-
-## Heuristic Mode
-Running in heuristic mode allows you to control the agent directly as a human player.
-
-1. From Project panel, open Assets → Prefabs → `VolleyballArea.prefab`.
-1. In Heirarchy panel, toggle open the `VolleyballArea` game object and click the `Agent` game object.
-1. In the Inspector Panel, go to Behavior Parameters → Behavior Type and change from `Default` to `Heuristic Only`. 
-1. Recommended: go back to the Scene view, and turn on the `Main Camera` for a better POV.
-1. Save the project (Ctrl/Cmd + S).
-1. Click ▶. 
-1. Use `a` `d` to rotate, `w` `d` to move, and `space` to jump.
 
 ## Training
 
@@ -88,33 +69,22 @@ Total size: 11
 The project contains some examples of how the reward function can be defined.
 The base example gives a +1 reward each time the agent hits the ball over the net.
 
-If training a competitive agent, consider using a simple reward like:
-- +1 for scoring a goal
-- -1 when opponent scores a goal
+## Submissions
 
-## Submission Guidelines
+If you've trained a Volleyball agent and would like to share it, please follow the instructions below:
 
-> ⚠️ Only models created using ML-Agent's trainers will work ([more information](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Unity-Inference-Engine.md)).
-
+- Note that only models created using ML-Agent's trainers will work ([more information](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Unity-Inference-Engine.md)).
 - Please ensure you're using the latest release of Unity ML-Agents ([Release 18](https://github.com/Unity-Technologies/ml-agents#releases--documentation))
 - You can change the reward functions, training configuration, and environment.
 - Leave the observation input or action space unchanged.
-- Submit your model's `.onnx` file (e.g. `Volleyball.onnx`) located in `results` → `<run-id>`.
+- Create a PR and add your model's `.onnx` file to the `Assets/Models` folder.
 
-[Submit your agent here](https://github.com/CoderOneHQ/ultimate-volleyball/issues/new?assignees=joooyzee&labels=submission&template=agent-submission.md&title=%5BSUBMISSION%5D).
-
-## Future improvements
-Feel free to raise a PR or issue for any suggestions.
-
-- Add raycast option to observations
-- Add opponent position to vector observations
-- Improve net and ball physics
-- Add out of bounds area
-- Add executable for training
+## Roadmap
+- [] Add raycasts for observations
+- [] Executable for training
+- [] Multiple units per team
+- [] Docs
+- [] A competition
 
 ## Questions and feedback
-- Join our [Discord](https://discord.gg/2Z695VGwyf) for any questions and discussions.
-- [PRs and suggestions welcome](https://github.com/CoderOneHQ/ultimate-volleyball/issues).
-
-## Looking for more?
-If you're interested in reinforcement learning and game-playing agents, please check out our [upcoming multi-agent AI competition](https://www.gocoder.one) launching late 2021.
+Please join our [Discord](https://discord.gg/2Z695VGwyf) for any questions, discussions, and feedback.

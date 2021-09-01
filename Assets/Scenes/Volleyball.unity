@@ -1188,6 +1188,7 @@ MonoBehaviour:
   agentJumpHeight: 2.75
   agentJumpVelocity: 400
   agentJumpVelocityMaxChange: 10
+  speedReductionFactor: 0.7
   blueGoalMaterial: {fileID: 2100000, guid: c9fa44c2c3f8ce74ca39a3355ea42631, type: 2}
   purpleGoalMaterial: {fileID: 2100000, guid: b0da1813c36914e678ba57f2790424e1, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 36dc31c319681407abc2da4ddfe78a8a, type: 2}

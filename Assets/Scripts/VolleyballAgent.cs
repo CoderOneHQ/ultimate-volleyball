@@ -39,6 +39,16 @@ public class VolleyballAgent : Agent
 
         agentRb = GetComponent<Rigidbody>();
         ballRb = ball.GetComponent<Rigidbody>();
+        
+        // for symmetry between player side
+        if (teamId == Team.Blue)
+        {
+            agentRot = -1;
+        }
+        else
+        {
+            agentRot = 1;
+        }
 
         resetParams = Academy.Instance.EnvironmentParameters;
     }
@@ -122,16 +132,6 @@ public class VolleyballAgent : Agent
         var rotateDirAction = act[1];
         var dirToGoSideAction = act[2];
         var jumpAction = act[3];
-
-        // for symmetry between player side
-        if (teamId == Team.Blue)
-        {
-            agentRot = -1;
-        }
-        else
-        {
-            agentRot = 1;
-        }
 
         if (dirToGoForwardAction == 1)
             dirToGo = (grounded ? 1f : 0.5f) * transform.forward * 1f;

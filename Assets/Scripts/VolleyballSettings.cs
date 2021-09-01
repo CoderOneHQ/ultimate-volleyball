@@ -14,7 +14,6 @@ public class VolleyballSettings : MonoBehaviour
     public Material purpleGoalMaterial;
     public Material defaultMaterial;
 
-    // This is a downward force applied when falling to make jumps look
-    // less floaty
+    // This is a downward force applied when falling to make jumps look less floaty
     public float fallingForce = 150;
 }

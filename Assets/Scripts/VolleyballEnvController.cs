@@ -87,27 +87,29 @@ public class VolleyballEnvController : MonoBehaviour
             if (lastHitter == Team.Blue)
             {
                 blueAgent.AddReward(-0.1f);
+                purpleAgent.AddReward(0.1f);
                 StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.purpleGoalMaterial, purpleGoalRenderer, .5f));
                 StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.purpleGoalMaterial, blueGoalRenderer, .5f));
             }
             else if (lastHitter == Team.Purple)
             {
                 purpleAgent.AddReward(-0.1f);
+                blueAgent.AddReward(0.1f);
                 StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.blueGoalMaterial, blueGoalRenderer, .5f));
                 StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.blueGoalMaterial, purpleGoalRenderer, .5f));
             }
         }
         else if (goalEvent == GoalEvent.HitPurpleGoal)
         {
-            // purpleAgent.AddReward(1f);
-            // blueAgent.AddReward(-1f);
+            purpleAgent.AddReward(1f);
+            blueAgent.AddReward(-1f);
             StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.purpleGoalMaterial, purpleGoalRenderer, .5f));
             StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.purpleGoalMaterial, blueGoalRenderer, .5f));
         }
         else if (goalEvent == GoalEvent.HitBlueGoal)
         {
-            // blueAgent.AddReward(1f);
-            // purpleAgent.AddReward(-1f);
+            blueAgent.AddReward(1f);
+            purpleAgent.AddReward(-1f);
             StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.blueGoalMaterial, blueGoalRenderer, .5f));
             StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.blueGoalMaterial, purpleGoalRenderer, .5f));
         }
@@ -118,19 +120,17 @@ public class VolleyballEnvController : MonoBehaviour
     }
 
     /// <summary>
-    /// Assigns rewards for hitting ball over the net
+    /// Assigns rewards for hitting ball over the net.
     /// </summary>
     public void AssignRewards(int teamSide)
     {
         if (teamSide == 0 && lastHitter == Team.Purple)
         {
-            purpleAgent.AddReward(1);
-            // Debug.Log("+1 to purple");
+            // purpleAgent.AddReward(1);
         }
         else if (teamSide == 1 && lastHitter == Team.Blue)
         {
-            blueAgent.AddReward(1);
-            // Debug.Log("+1 to blue");
+            // blueAgent.AddReward(1);
         }
     }
 

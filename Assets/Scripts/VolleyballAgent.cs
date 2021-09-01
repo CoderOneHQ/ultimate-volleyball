@@ -136,7 +136,7 @@ public class VolleyballAgent : Agent
         if (dirToGoForwardAction == 1)
             dirToGo = (grounded ? 1f : 0.5f) * transform.forward * 1f;
         else if (dirToGoForwardAction == 2)
-            dirToGo = (grounded ? 1f : 0.5f) * transform.forward * -1f;
+            dirToGo = (grounded ? 1f : 0.5f) * transform.forward * volleyballSettings.speedReductionFactor * -1f;
 
         if (rotateDirAction == 1)
             rotateDir = transform.up * -1f;
@@ -144,9 +144,9 @@ public class VolleyballAgent : Agent
             rotateDir = transform.up * 1f;
 
         if (dirToGoSideAction == 1)
-            dirToGo = (grounded ? 1f : 0.5f) * transform.right * -0.75f;
+            dirToGo = (grounded ? 1f : 0.5f) * transform.right * volleyballSettings.speedReductionFactor * -1f;
         else if (dirToGoSideAction == 2)
-            dirToGo = (grounded ? 1f : 0.5f) * transform.right * 0.75f;
+            dirToGo = (grounded ? 1f : 0.5f) * transform.right * volleyballSettings.speedReductionFactor;
 
         if (jumpAction == 1)
             if (((jumpingTime <= 0f) && grounded))

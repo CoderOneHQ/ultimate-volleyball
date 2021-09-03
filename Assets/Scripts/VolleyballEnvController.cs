@@ -81,7 +81,9 @@ public class VolleyballEnvController : MonoBehaviour
     }
 
     /// <summary>
-    /// Resolves scenarios when ball enters a trigger and assigns rewards
+    /// Resolves scenarios when ball enters a trigger and assigns rewards.
+    /// Example reward functions are shown below.
+    /// To enable Self-Play: Set either Purple or Blue Agent's Team ID to 1.
     /// </summary>
     public void ResolveEvent(Event triggerEvent)
     {
@@ -91,14 +93,14 @@ public class VolleyballEnvController : MonoBehaviour
                 if (lastHitter == Team.Blue)
                 {
                     // apply penalty to blue agent
-                    blueAgent.AddReward(-0.1f);
-                    purpleAgent.AddReward(0.1f);
+                    // blueAgent.AddReward(-0.1f);
+                    // purpleAgent.AddReward(0.1f);
                 }
                 else if (lastHitter == Team.Purple)
                 {
                     // apply penalty to purple agent
-                    purpleAgent.AddReward(-0.1f);
-                    blueAgent.AddReward(0.1f);
+                    // purpleAgent.AddReward(-0.1f);
+                    // blueAgent.AddReward(0.1f);
                 }
 
                 // end episode
@@ -109,8 +111,8 @@ public class VolleyballEnvController : MonoBehaviour
 
             case Event.HitBlueGoal:
                 // blue wins
-                blueAgent.AddReward(1f);
-                purpleAgent.AddReward(-1f);
+                // blueAgent.AddReward(1f);
+                // purpleAgent.AddReward(-1f);
 
                 // turn floor blue
                 StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.blueGoalMaterial, RenderersList, .5f));
@@ -123,8 +125,8 @@ public class VolleyballEnvController : MonoBehaviour
 
             case Event.HitPurpleGoal:
                 // purple wins
-                purpleAgent.AddReward(1f);
-                blueAgent.AddReward(-1f);
+                // purpleAgent.AddReward(1f);
+                // blueAgent.AddReward(-1f);
 
                 // turn floor purple
                 StartCoroutine(GoalScoredSwapGroundMaterial(volleyballSettings.purpleGoalMaterial, RenderersList, .5f));
@@ -138,43 +140,17 @@ public class VolleyballEnvController : MonoBehaviour
             case Event.HitIntoBlueArea:
                 if (lastHitter == Team.Purple)
                 {
-                    // purpleAgent.AddReward(1);
+                    purpleAgent.AddReward(1);
                 }
                 break;
 
             case Event.HitIntoPurpleArea:
                 if (lastHitter == Team.Blue)
                 {
-                    // blueAgent.AddReward(1);
+                    blueAgent.AddReward(1);
                 }
                 break;
         }
-    }
-
-    /// <summary>
-    /// Reset ball spawn conditions
-    /// </summary>
-    void ResetBall()
-    {
-        var randomPosX = Random.Range(-2f, 2f);
-        var randomPosZ = Random.Range(6f, 10f);
-        var randomPosY = Random.Range(6f, 8f);
-
-        // alternate ball spawn side
-        // -1 = spawn blue side, 1 = spawn purple side
-        ballSpawnSide = -1 * ballSpawnSide;
-
-        if (ballSpawnSide == -1)
-        {
-            ball.transform.localPosition = new Vector3(randomPosX, randomPosY, randomPosZ);
-        }
-        else if (ballSpawnSide == 1)
-        {
-            ball.transform.localPosition = new Vector3(randomPosX, randomPosY, -1 * randomPosZ);
-        }
-
-        ballRb.angularVelocity = Vector3.zero;
-        ballRb.velocity = Vector3.zero;
     }
 
     /// <summary>
@@ -191,7 +167,7 @@ public class VolleyballEnvController : MonoBehaviour
         }
 
         yield return new WaitForSeconds(time); // wait for 2 sec
-        
+
         foreach (var renderer in rendererList)
         {
             renderer.material = volleyballSettings.defaultMaterial;
@@ -238,5 +214,31 @@ public class VolleyballEnvController : MonoBehaviour
 
         // reset ball to starting conditions
         ResetBall();
+    }
+
+    /// <summary>
+    /// Reset ball spawn conditions
+    /// </summary>
+    void ResetBall()
+    {
+        var randomPosX = Random.Range(-2f, 2f);
+        var randomPosZ = Random.Range(6f, 10f);
+        var randomPosY = Random.Range(6f, 8f);
+
+        // alternate ball spawn side
+        // -1 = spawn blue side, 1 = spawn purple side
+        ballSpawnSide = -1 * ballSpawnSide;
+
+        if (ballSpawnSide == -1)
+        {
+            ball.transform.localPosition = new Vector3(randomPosX, randomPosY, randomPosZ);
+        }
+        else if (ballSpawnSide == 1)
+        {
+            ball.transform.localPosition = new Vector3(randomPosX, randomPosY, -1 * randomPosZ);
+        }
+
+        ballRb.angularVelocity = Vector3.zero;
+        ballRb.velocity = Vector3.zero;
     }
 }

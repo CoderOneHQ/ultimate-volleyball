@@ -153,7 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce6a60fb54c16941b338046d26e4e67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area: {fileID: 7954672815519958404}
   envController: {fileID: 0}
   purpleGoal: {fileID: 5132028400407904075}
   blueGoal: {fileID: 1254629476493177227}
@@ -550,11 +549,11 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 2ab7ea47f6d99cd418b2e491279f29fb, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 263d476a5b8eb574abde0917fda39eb2, type: 3}
   m_InferenceDevice: 3
   m_BehaviorType: 0
   m_BehaviorName: Volleyball
-  TeamId: 1
+  TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
   m_ObservableAttributeHandling: 0
@@ -755,7 +754,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 2ab7ea47f6d99cd418b2e491279f29fb, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 263d476a5b8eb574abde0917fda39eb2, type: 3}
   m_InferenceDevice: 3
   m_BehaviorType: 0
   m_BehaviorName: Volleyball

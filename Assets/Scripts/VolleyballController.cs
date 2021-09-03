@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class VolleyballController : MonoBehaviour
 {
-    public GameObject area;
     [HideInInspector]
     public VolleyballEnvController envController;
 
@@ -19,33 +18,34 @@ public class VolleyballController : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks whether the ball lands in the blue, purple, or out of bounds area
+    /// Detects whether the ball lands in the blue, purple, or out of bounds area
     /// </summary>
     void OnTriggerEnter(Collider other)
     {
-
         if (other.gameObject.CompareTag("boundary"))
         {
             // ball went out of bounds
-            envController.ResolveGoalEvent(GoalEvent.HitOutOfBounds);
+            envController.ResolveEvent(Event.HitOutOfBounds);
         }
         else if (other.gameObject.CompareTag("blueBoundary"))
         {
             // ball hit into blue side
-            envController.AssignRewards(0);
+            envController.ResolveEvent(Event.HitIntoBlueArea);
         }
         else if (other.gameObject.CompareTag("purpleBoundary"))
         {
             // ball hit into purple side
-            envController.AssignRewards(1);
+            envController.ResolveEvent(Event.HitIntoPurpleArea);
         }
         else if (other.gameObject.CompareTag("purpleGoal"))
         {
-            envController.ResolveGoalEvent(GoalEvent.HitPurpleGoal);
+            // ball hit purple goal (blue side court)
+            envController.ResolveEvent(Event.HitPurpleGoal);
         }
         else if (other.gameObject.CompareTag("blueGoal"))
         {
-            envController.ResolveGoalEvent(GoalEvent.HitBlueGoal);
+            // ball hit blue goal (purple side court)
+            envController.ResolveEvent(Event.HitBlueGoal);
         }
 
     }

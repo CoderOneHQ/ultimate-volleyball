@@ -39,6 +39,16 @@ public class VolleyballAgent : Agent
 
         agentRb = GetComponent<Rigidbody>();
         ballRb = ball.GetComponent<Rigidbody>();
+        
+        // for symmetry between player side
+        if (teamId == Team.Blue)
+        {
+            agentRot = -1;
+        }
+        else
+        {
+            agentRot = 1;
+        }
 
         resetParams = Academy.Instance.EnvironmentParameters;
     }
@@ -123,20 +133,10 @@ public class VolleyballAgent : Agent
         var dirToGoSideAction = act[2];
         var jumpAction = act[3];
 
-        // for symmetry between player side
-        if (teamId == Team.Blue)
-        {
-            agentRot = -1;
-        }
-        else
-        {
-            agentRot = 1;
-        }
-
         if (dirToGoForwardAction == 1)
             dirToGo = (grounded ? 1f : 0.5f) * transform.forward * 1f;
         else if (dirToGoForwardAction == 2)
-            dirToGo = (grounded ? 1f : 0.5f) * transform.forward * -1f;
+            dirToGo = (grounded ? 1f : 0.5f) * transform.forward * volleyballSettings.speedReductionFactor * -1f;
 
         if (rotateDirAction == 1)
             rotateDir = transform.up * -1f;
@@ -144,9 +144,9 @@ public class VolleyballAgent : Agent
             rotateDir = transform.up * 1f;
 
         if (dirToGoSideAction == 1)
-            dirToGo = (grounded ? 1f : 0.5f) * transform.right * -0.75f;
+            dirToGo = (grounded ? 1f : 0.5f) * transform.right * volleyballSettings.speedReductionFactor * -1f;
         else if (dirToGoSideAction == 2)
-            dirToGo = (grounded ? 1f : 0.5f) * transform.right * 0.75f;
+            dirToGo = (grounded ? 1f : 0.5f) * transform.right * volleyballSettings.speedReductionFactor;
 
         if (jumpAction == 1)
             if (((jumpingTime <= 0f) && grounded))

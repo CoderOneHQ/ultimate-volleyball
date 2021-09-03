@@ -1,6 +1,6 @@
 # 🏐 Ultimate Volleyball
 
-![Ultimate Volleyball](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/6115ddedda18aab700dfb75c_ultimate-volleyball-trained.gif)
+![Ultimate Volleyball](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/612dc700708be07a02a57f58_ultimate-volleyball-v2.gif)
 
 ## About
 **Ultimate Volleyball** is a multi-agent reinforcement learning environment built on [Unity ML-Agents](https://unity.com/products/machine-learning-agents).
@@ -8,6 +8,8 @@
 You're welcome to submit a trained model which we'll play against others and add to the [leaderboard](#leaderboard).
 
 > **Version**: up-to-date with ML-Agents Release 18
+
+> ✨ **NEW:** The latest version of this environment includes a Self-Play example. 
 
 ## Contents
 1. [Leaderboard](#leaderboard)
@@ -21,8 +23,9 @@ You're welcome to submit a trained model which we'll play against others and add
 ## Leaderboard
 | Rank | Name | Winrate | Details | Clip |
 | --- | --- | --- | --- | --- | 
-| 1 🥇 | Volleybot | 84.9% | PPO, 20M steps | ![Volleybot vs Ballbot](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/611606ab086c3e61eb8b9b3a_vb_26_5M_v_26_20M.gif) *Playing as: Blue* 🟦
-| 2 | Random Agent | 6.37% | - | ![Random Agent vs Volleybot](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/6116072f73d123ce5b020195_vb_20_26M_v_26_20M.gif) *Playing as: Purple* 🟪
+| 1 🥇 | VolleyAgent | 71.4% | PPO, 20M steps (`Volleyball.onnx`) | ![VolleyAgent](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/6131c77c9979f7221a35fbf3_match2.gif) *Playing as: Blue* 🟦
+| 2 | SelfPlayAgent | 69.8% | Self-Play PPO, 60M steps (`Volleyball_SelfPlay.onnx`) | ![SelfPlayAgent](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/6131c9d8785000ce35f459a9_match_2_2.gif) *Playing as: Purple* 🟪
+| 3 | Random Agent | 15.7% | (`Volleyball_Random.onnx`) | ![Random Agent vs Volleybot](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/6131c77c057cdd3280bfc499_match1.gif) *Playing as: Blue* 🟦
 
 ## Getting Started
 1. Install the [Unity ML-Agents toolkit](https:github.com/Unity-Technologies/ml-agents) (Release 18+) by following the [installation instructions](https://github.com/Unity-Technologies/ml-agents/blob/release_18_docs/docs/Installation.md).
@@ -42,6 +45,13 @@ You're welcome to submit a trained model which we'll play against others and add
 6. From another terminal window, navigate to the same directory you ran Step 4 from, and run `tensorboard --logdir results` to observe the training process. 
 
 For more detailed instructions, check the [ML-Agents getting started guide](https://github.com/Unity-Technologies/ml-agents/blob/release_18_docs/docs/Getting-Started.md).
+
+## Self-Play
+To enable self-play:
+1. Set either Purple or Blue Agent Team ID to 1.
+![Set Team ID](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/6131cc22959cd47d4b359382_selfplay.jpg)
+2. Include the self-play hyperparameter hierarchy in your trainer config file, or use the provided file in `config/Volleyball_SelfPlay.yaml` ([ML-Agents Documentation](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Learning-Environment-Design-Agents.md#teams-for-adversarial-scenarios))
+3. Set your reward function in `ResolveEvent()` in `VolleyballEnvController.cs`.
 
 ## Environment Description
 **Goal:** Get the ball to bounce in the opponent's side of the court while preventing the ball bouncing into your own court.
@@ -78,12 +88,5 @@ If you've trained a Volleyball agent and would like to share it, please follow t
 - Leave the observation input or action space unchanged.
 - Create a PR and add your model's `.onnx` file to the `Assets/Models` folder.
 
-## Roadmap
-- [ ] Add raycasts for observations
-- [ ] Executable for training
-- [ ] Multiple units per team
-- [ ] Docs
-- [ ] A competition
-
 ## Questions and feedback
-Please join our [Discord](https://discord.gg/2Z695VGwyf) for any questions, discussions, and feedback.
+This project is managed by the team at [Coder One](https://www.gocoder.one).  Please join our [Discord](https://discord.gg/2Z695VGwyf) for any questions, discussions, and feedback.

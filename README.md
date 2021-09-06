@@ -23,9 +23,10 @@ You're welcome to submit a trained model which we'll play against others and add
 ## Leaderboard
 | Rank | Name | Winrate | Details | Clip |
 | --- | --- | --- | --- | --- | 
-| 1 🥇 | VolleyAgent | 71.4% | PPO, 20M steps (`Volleyball.onnx`) | ![VolleyAgent](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/6131c77c9979f7221a35fbf3_match2.gif) *Playing as: Blue* 🟦
-| 2 | SelfPlayAgent | 69.8% | Self-Play PPO, 60M steps (`Volleyball_SelfPlay.onnx`) | ![SelfPlayAgent](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/6131c9d8785000ce35f459a9_match_2_2.gif) *Playing as: Purple* 🟪
-| 3 | Random Agent | 15.7% | (`Volleyball_Random.onnx`) | ![Random Agent vs Volleybot](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/6131c77c057cdd3280bfc499_match1.gif) *Playing as: Blue* 🟦
+| 1 🥇 | melonietr | 73.1% | Self-Play PPO, 80M steps (`Submissions/melonietr.onnx`) | ![melonietr](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/6135f9ab5c8d9753a30d47ec_melonietr.gif) *Playing as: Purple* 🟪
+| 2 | VolleyAgent | 71.4% | PPO, 20M steps (`Volleyball.onnx`) | ![VolleyAgent](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/6131c77c9979f7221a35fbf3_match2.gif) *Playing as: Blue* 🟦
+| 3 | SelfPlayAgent | 69.8% | Self-Play PPO, 60M steps (`Volleyball_SelfPlay.onnx`) | ![SelfPlayAgent](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/6131c9d8785000ce35f459a9_match_2_2.gif) *Playing as: Purple* 🟪
+| 4 | Random Agent | 15.7% | (`Volleyball_Random.onnx`) | ![Random Agent vs Volleybot](https://uploads-ssl.webflow.com/5ed1e873ef82ae197179be22/6131c77c057cdd3280bfc499_match1.gif) *Playing as: Blue* 🟦
 
 ## Getting Started
 1. Install the [Unity ML-Agents toolkit](https:github.com/Unity-Technologies/ml-agents) (Release 18+) by following the [installation instructions](https://github.com/Unity-Technologies/ml-agents/blob/release_18_docs/docs/Installation.md).
@@ -86,7 +87,7 @@ If you've trained a Volleyball agent and would like to share it, please follow t
 - Please ensure you're using the latest release of Unity ML-Agents ([Release 18](https://github.com/Unity-Technologies/ml-agents#releases--documentation))
 - You can change the reward functions, training configuration, and environment.
 - Leave the observation input or action space unchanged.
-- Create a PR and add your model's `.onnx` file to the `Assets/Models` folder.
+- Create a PR and add your model's `.onnx` file to the `Submissions` folder.
 
 ## Questions and feedback
 This project is managed by the team at [Coder One](https://www.gocoder.one).  Please join our [Discord](https://discord.gg/2Z695VGwyf) for any questions, discussions, and feedback.

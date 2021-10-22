@@ -5,7 +5,12 @@
 ## About
 **Ultimate Volleyball** is a multi-agent reinforcement learning environment built on [Unity ML-Agents](https://unity.com/products/machine-learning-agents).
 
-See ['A hands-on introduction to deep reinforcement learning using Unity ML-Agents'](https://www.gocoder.one/blog/hands-on-introduction-to-deep-reinforcement-learning?s=uvb) for a full tutorial on Unity, ML-Agents, and training volleyball agents with PPO and Self-Play.
+See ['A hands-on introduction to deep reinforcement learning using Unity ML-Agents'](https://www.gocoder.one/blog/hands-on-introduction-to-deep-reinforcement-learning?s=uvb) for a full tutorial:
+- Part 1: [Getting started with Unity ML-Agents](https://www.gocoder.one/blog/introduction-to-unity-ml-agents?s=uvb)
+- Part 2: [Building a volleyball reinforcement learning environment](https://www.gocoder.one/blog/build-a-reinforcement-learning-environment-using-unity-mlagents?s=uvb)
+- Part 3: [Designing reinforcement learning agents using Unity ML-Agents](https://www.gocoder.one/blog/designing-reinforcement-learning-agents-using-unity-ml-agents?s=uvb)
+- Part 4: [Training an agent using PPO with Unity ML-Agents](https://www.gocoder.one/blog/training-agents-using-ppo-with-unity-ml-agents?s=uvb)
+- Part 5: [Self-play with Unity ML-Agents](https://www.gocoder.one/blog/competitive-self-play-unity-ml-agents?s=uvb)
 
 > **Version:** Up-to-date with ML-Agents Release 18
  

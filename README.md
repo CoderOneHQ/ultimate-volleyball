@@ -1,6 +1,6 @@
 # 🏐 Ultimate Volleyball
 
-![Ultimate Volleyball](https://www.gocoder.one/static/ultimate-volleyball-eb08a31356cf6a5add9ad2b3ec76cfc6.gif)
+![Ultimate Volleyball](https://www.coderone.dev/static/ultimate-volleyball-eb08a31356cf6a5add9ad2b3ec76cfc6.gif)
 
 ## About
 **Ultimate Volleyball** is a multi-agent reinforcement learning environment built on [Unity ML-Agents](https://unity.com/products/machine-learning-agents).
